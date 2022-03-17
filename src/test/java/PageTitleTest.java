@@ -1,19 +1,11 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.parallel.Execution;
-import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-public class PageTitleTest extends BaseTest{
+public class PageTitleTest extends BaseTest {
 
     @Tag("Regression")
     @ParameterizedTest
@@ -24,9 +16,9 @@ public class PageTitleTest extends BaseTest{
             "https://www.selenium.dev/documentation/en/webdriver, WebDriver | Selenium",
             "https://www.onet.pl, Onet – Jesteś na bieżąco"
     })
-    public void openingMainPageShouldReturnAccuratePageTitle(String url, String title) {
+    public void shouldHaveProperPageTitle(String url, String title) {
         driver.get(url);
-        assertThat(driver.getTitle(), equalTo(title));
+        assertThat("Title is not correct", driver.getTitle(), equalTo(title));
     }
 
 }
