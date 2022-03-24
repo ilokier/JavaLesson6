@@ -3,12 +3,14 @@ import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 @Execution(ExecutionMode.CONCURRENT)
 public class PageTitleWithTagsTest extends BaseTest {
-
+    Logger logger = LoggerFactory.getLogger(PageTitleWithTagsTest.class);
     @Tag("siiportal")
     @Tag("Regression")
     @ParameterizedTest
@@ -33,7 +35,10 @@ public class PageTitleWithTagsTest extends BaseTest {
     @ValueSource(strings = {"Filmweb - filmy takie jak Ty!"})
     public void shouldHaveFilmwebPageTitle(String title) {
         driver.get("https://www.filmweb.pl");
+
+
         assertThat(driver.getTitle(), equalTo(title));
+        logger.info("title is "+title);
     }
 
     @Tag("selenium")
