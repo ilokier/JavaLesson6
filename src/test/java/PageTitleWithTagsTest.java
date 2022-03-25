@@ -8,15 +8,22 @@ import org.slf4j.LoggerFactory;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+
 @Execution(ExecutionMode.CONCURRENT)
 public class PageTitleWithTagsTest extends BaseTest {
-    Logger logger = LoggerFactory.getLogger(PageTitleWithTagsTest.class);
+    Logger log = LoggerFactory.getLogger(PageTitleWithTagsTest.class);
+    private String siteUrl;
+
     @Tag("siiportal")
     @Tag("Regression")
     @ParameterizedTest
     @ValueSource(strings = {"Logowanie na koncie"})
     public void siiPortalTest(String title) {
-        driver.get("https://siiportal.sii.pl");
+        siteUrl = "https://siiportal.sii.pl";
+        driver.get(siteUrl);
+        log.info("<<<Provided site url is: " + siteUrl);
+        log.info("<<<expected site title is: " + title);
+        log.info("Actual site title is " + driver.getTitle());
         assertThat(driver.getTitle(), equalTo(title));
     }
 
@@ -25,8 +32,13 @@ public class PageTitleWithTagsTest extends BaseTest {
     @ParameterizedTest
     @ValueSource(strings = {"Kotuszkowo- blog o kotach"})
     public void shouldHaveKotuszkowoPageTitle(String title) {
-        driver.get("http://kotuszkowo.pl");
+        siteUrl = "http://kotuszkowo.pl";
+        driver.get(siteUrl);
+        log.info("<<<Provided site url is: " + siteUrl);
+        log.info("<<<expected site title is: " + title);
+        log.info("Actual site title is " + driver.getTitle());
         assertThat(driver.getTitle(), equalTo(title));
+
     }
 
     @Tag("filmweb")
@@ -34,11 +46,13 @@ public class PageTitleWithTagsTest extends BaseTest {
     @ParameterizedTest
     @ValueSource(strings = {"Filmweb - filmy takie jak Ty!"})
     public void shouldHaveFilmwebPageTitle(String title) {
-        driver.get("https://www.filmweb.pl");
-
-
+        siteUrl = "https://www.filmweb.pl";
+        driver.get(siteUrl);
+        log.info("<<<Provided site url is: " + siteUrl);
+        log.info("<<<expected site title is: " + title);
+        log.info("Actual site title is " + driver.getTitle());
         assertThat(driver.getTitle(), equalTo(title));
-        logger.info("title is "+title);
+
     }
 
     @Tag("selenium")
@@ -46,7 +60,11 @@ public class PageTitleWithTagsTest extends BaseTest {
     @ParameterizedTest
     @ValueSource(strings = {"WebDriver | Selenium"})
     public void shouldHaveSeleniumPageTitle(String title) {
-        driver.get("https://www.selenium.dev/documentation/en/webdriver");
+        siteUrl = "https://www.selenium.dev/documentation/en/webdriver";
+        driver.get(siteUrl);
+        log.info("<<<Provided site url is: " + siteUrl);
+        log.info("<<<expected site title is: " + title);
+        log.info("Actual site title is " + driver.getTitle());
         assertThat(driver.getTitle(), equalTo(title));
     }
 
@@ -55,7 +73,13 @@ public class PageTitleWithTagsTest extends BaseTest {
     @ParameterizedTest
     @ValueSource(strings = {"Onet – Jesteś na bieżąco"})
     public void shouldHaveOnetPageTitle(String title) {
-        driver.get("https://www.onet.pl");
+        siteUrl = "https://www.onet.pl";
+        driver.get(siteUrl);
+        log.info("<<<Provided site url is: " + siteUrl);
+        log.info("<<<expected site title is: " + title);
+        log.info("Actual site title is " + driver.getTitle());
         assertThat(driver.getTitle(), equalTo(title));
+
+
     }
 }
